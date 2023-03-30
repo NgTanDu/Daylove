@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="icon" style="width: 30px; height: 30px;" href="https://scontent.fsgn2-3.fna.fbcdn.net/v/t1.6435-9/118715112_758661438256499_1017573466453645013_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=6OqK9Vv6Ch4AX94k9dU&_nc_ht=scontent.fsgn2-3.fna&oh=00_AfAaqoPEqtwoS5NNs5v8W6eOmpYP06K_wKzC2nM4UBRtGQ&oe=643ACE09"/>
+      <title>Together</title>
+      <style>
+            html, body {
+            background-color:pink;
+            margin: 0;
+            padding: 0;
+            }
+
+            img {max-width: 100%;}
+
+            body {
+            display: grid;
+            font-family: "Segoe UI", sans-serif;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(auto, auto);
+            color: #383838;
+            text-shadow: 0.4px 0.4px 0.4px rgba(0,0,0,.2);
+            }
+
+            h1 {
+            font-weight: lighter;
+            grid-column: span 3;
+            text-align: center;
+            color: #ec407a;
+            }
+
+            #wrapper {
+            display: grid;
+            grid-column: 3 / 11;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(auto, auto);
+            grid-row-gap: 10px;
+            margin-top: 3.6rem;
+            }
+
+            #clock-box, #info {
+            grid-column: span 3;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            }
+
+            #clock-box #clock {
+            grid-column: 4 / 10;
+            background-image: linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%);
+            padding: .6rem 2rem;
+            padding-top: .8rem;
+            text-align: center;
+            font-size: 2rem;
+            border-radius: 10rem;
+            }
+
+            date, time {
+            display: block;
+            }
+
+            date {
+            font-size: 18px;
+            }
+
+            time {
+            font-family: "Arial", sans-serif;
+            line-height: 3.2rem;
+            letter-spacing: 2px;
+            }
+
+            .avt {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            box-shadow: 2px 2px 8px rgba(0,0,0,.2);
+            }
+
+            #info {
+            margin-top: 2.6rem;
+            }
+
+            #heart {
+            grid-column: span 2;
+            display: grid;
+            grid-template-rows: 2;
+            font-size: 44px;
+            color: #b90d46;
+            align-self: center;
+            padding-bottom: 2.6rem;
+            text-align: center;
+            }
+
+            anni {
+            font-size: 16px;
+            letter-spacing: 0.2px;
+            }
+
+            #info .one {
+            grid-column: 3 / 6;
+            text-align: center;
+            }
+
+            #info .two {
+            grid-column: 8 / 11;
+            text-align: center;
+            }
+
+            footer {
+            grid-column: span 3;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: lighter;
+            margin-top: 1.2rem;
+            }
+
+            #mask {
+            background-image: linear-gradient(to top, #6d44cc5d 0%, #f09cd880 100%);
+            opacity: .42;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            }
+
+            @media (max-width: 992px) {
+            #wrapper {
+                  grid-column: span 12;
+            }
+
+            #clock-box #clock {
+                  grid-column: 2 / 12;
+            }
+
+            .avt {
+                  width: 120px;
+                  height: 120px;
+            }
+
+            #info .one, #info .two{
+                  grid-column: span 12;;
+            }
+
+            #heart {
+                  grid-column: span 12;
+                  padding-bottom: 1rem;
+            }
+
+            footer {
+                  font-size: 1.2rem;
+                  margin: 0;
+                  padding-bottom: 2rem;
+            }
+
+            }
+      </style>
+
+      <script>
+            const yourDate = new Date("2017-10-18T00:00:00"),
+
+            Love = '💕 Cảm ơn vì khoảng thời gian ta bên nhau 💕';
+
+            document.addEventListener('DOMContentLoaded', function(){
+            var rootTime = document.querySelector("time");
+
+            document.querySelector("anni").textContent = `${(yourDate.getDate()>9)?yourDate.getDate():"0"+yourDate.getDate()}-${(yourDate.getMonth()>8)?(yourDate.getMonth()+1):"0"+(yourDate.getMonth()+1)}-${yourDate.getFullYear()}`;
+            
+            document.querySelector("date").textContent = Math.floor( Math.floor((new Date() - yourDate) / 1000) / 60 / 60 / 24)+" Ngày";
+
+            function olock() {
+                  var today = new Date(),
+                  hrs = (Math.floor( Math.floor((today - yourDate) / 1000) / 60 / 60)) % 24,
+                  min = (Math.floor( Math.floor((today - yourDate) / 1000) / 60)) % 60,
+                  sec =  Math.floor((today - yourDate) / 1000) % 60;
+                  rootTime.textContent = `${(hrs>9)?hrs:"0"+hrs} giờ ${(min>9)?min:"0"+min} phút ${(sec>9)?sec:"0"+sec} giây`;
+            } olock();
+            var timer = setInterval(function(){olock()}, 1000);
+
+            document.getElementsByTagName("body")[0].insertAdjacentHTML(
+                  "beforeend",
+                  "<div id='mask'></div>"
+            );
+
+            }, false);
+      </script>
+</head>
+<body>
+     <div id="wrapper">
+           <h1>LOVE DAYS</h1>
+
+           <div id="clock-box">
+                 <div id="clock">
+                       <date></date>
+                       <time></time>
+                  </div>
+            </div>
+            
+            <div id="info">
+                  <div class="one">
+                        <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t1.6435-9/83048594_313326996508461_707399780683865886_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=174925&_nc_ohc=2ywlwbXiU6kAX8089xY&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfAsxTNSr0SDz-yKZeGNIP-6j2JZrNYHFERUbeo2XKMYvg&oe=643AD21C" class="avt">
+                        <p>Nguyễn Tấn Dự</p>
+                  </div>
+                  <div id="heart">
+                        ❤<anni>...</anni>
+                  </div>
+                  <div class="two">
+                        <img src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t1.6435-9/94253006_663219561134021_6752581238134931456_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=174925&_nc_ohc=bXmvZhB7jycAX9HRaTS&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfAd9HD91JKkAscd8I-gU4xu4dedbE03SCQfZ1W4ZD0RSQ&oe=643ADAB8" class="avt">
+                        <p>Thái Thị Hương Huyền</p>
+                  </div>
+            </div>
+            
+            <footer>💕 Cảm ơn thanh xuân đã có cậu 💕</footer>
+      </div> 
+
+</body>
+</html>
